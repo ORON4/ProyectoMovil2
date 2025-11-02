@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoMovil2.Views.CrearEditarTareaPage"
+             x:DataType="viewmodels:CrearEditarTareaViewModel"
+             xmlns:viewmodels="clr-namespace:ProyectoMovil2.ViewModels"
+             Title="{Binding Title}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Header -->
+            <Label 
+                Text="{Binding Title}"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#007ACC"
+                HorizontalOptions="Center" />
+
+            <!-- Título -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Título" FontSize="16" FontAttributes="Bold" />
+                <Border StrokeThickness="1" Stroke="#CCCCCC" StrokeShape="RoundRectangle 10">
+                    <Entry 
+                        Text="{Binding Titulo}"
+                        Placeholder="Ingrese el título de la tarea"
+                        Margin="10,5" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Descripción -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Descripción" FontSize="16" FontAttributes="Bold" />
+                <Border StrokeThickness="1" Stroke="#CCCCCC" StrokeShape="RoundRectangle 10">
+                    <Editor 
+                        Text="{Binding Descripcion}"
+                        Placeholder="Ingrese la descripción de la tarea"
+                        HeightRequest="120"
+                        Margin="10,5" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Fecha de Entrega -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Fecha de Entrega" FontSize="16" FontAttributes="Bold" />
+                <Border StrokeThickness="1" Stroke="#CCCCCC" StrokeShape="RoundRectangle 10">
+                    <DatePicker 
+                        Date="{Binding FechaEntrega}"
+                        MinimumDate="{Binding FechaMinima}"
+                        Margin="10,5" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Estatus -->
+            <HorizontalStackLayout Spacing="10">
+                <Label 
+                    Text="Completada:"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center" />
+                <Switch 
+                    IsToggled="{Binding Estatus}"
+                    OnColor="#28a745"
+                    ThumbColor="White" />
+            </HorizontalStackLayout>
+
+            <!-- Mensaje de Error -->
+            <Label 
+                Text="{Binding MensajeError}"
+                TextColor="Red"
+                IsVisible="{Binding MensajeError, Converter={StaticResource StringNotEmptyConverter}}"
+                HorizontalOptions="Center"
+                FontSize="14" />
+
+            <!-- Botones -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,20,0,0">
+
+                <Button 
+                    Grid.Column="0"
+                    Text="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="#28a745"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    IsEnabled="{Binding IsNotBusy}" />
+
+                <Button 
+                    Grid.Column="1"
+                    Text="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    BackgroundColor="#6c757d"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    IsEnabled="{Binding IsNotBusy}" />
+
+            </Grid>
+
+            <!-- Indicador de carga -->
+            <ActivityIndicator 
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="#007ACC"
+                HeightRequest="50" />
+
+        </VerticalStackLayout>
+        </ScrollView>
+</ContentPage>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ProyectoMovil2.ViewModels"
+             x:Class="ProyectoMovil2.Views.LoginPage"
+            x:DataType="viewmodels:LoginViewModel"
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout 
+            Spacing="20" 
+            Padding="30"
+            VerticalOptions="Center">
+
+            <Label 
+                Text="Bienvenido"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Inicia sesión para continuar"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20" />
+
+            <!-- Campo de Usuario -->
+            <Border 
+                StrokeThickness="1"
+                Stroke="#CCCCCC"
+                StrokeShape="RoundRectangle 10">
+                <Entry 
+                    Text="{Binding NombreUsuario}"
+                    Placeholder="Nombre de Usuario"
+                    Margin="10,5"
+                    ReturnType="Next" />
+            </Border>
+
+            <!-- Campo de Contraseña -->
+            <Border 
+                StrokeThickness="1"
+                Stroke="#CCCCCC"
+                StrokeShape="RoundRectangle 10">
+                <Entry 
+                    Text="{Binding Contraseña}"
+                    Placeholder="Contraseña"
+                    IsPassword="True"
+                    Margin="10,5"
+                    ReturnType="Done"
+                    ReturnCommand="{Binding LoginCommand}" />
+            </Border>
+
+            <!-- Mensaje de Error -->
+            <Label 
+                Text="{Binding MensajeError}"
+                TextColor="Red"
+                IsVisible="{Binding MensajeError, Converter={StaticResource StringNotEmptyConverter}}"
+                HorizontalOptions="Center"
+                FontSize="14" />
+
+            <!-- Botón de Login -->
+            <Button 
+                Text="Iniciar Sesión"
+                Command="{Binding LoginCommand}"
+                BackgroundColor="#007ACC"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Margin="0,10,0,0"
+                IsEnabled="{Binding IsNotBusy}" />
+
+            <!-- Indicador de Actividad -->
+            <ActivityIndicator 
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="#007ACC"
+                HeightRequest="30" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

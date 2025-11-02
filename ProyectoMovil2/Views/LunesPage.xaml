@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoMovil2.Views.LunesPage"
+             Title="LunesPage">
+
+    <VerticalStackLayout 
+        Padding="20"
+        Spacing="20"
+        VerticalOptions="Center">
+
+        <Label 
+            Text="Lunes"
+            FontSize="32"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            TextColor="#007ACC" />
+
+        <Button 
+            Text="Grupo 1"
+            Command="{Binding IrAGrupoCommand}"
+            BackgroundColor="#007ACC"
+            TextColor="White"
+            CornerRadius="10"
+            HeightRequest="50"
+            WidthRequest="200"
+            FontSize="18"
+            FontAttributes="Bold" />
+
+    </VerticalStackLayout>
+
+</ContentPage>
