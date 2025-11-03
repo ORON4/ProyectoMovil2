@@ -1,56 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ProyectoMovil2.Services;
 using ProyectoMovil2.Models;
+using ProyectoMovil2.Services;
 
+namespace ProyectoMovil2.ViewModels;
 
-namespace ProyectoMovil2.ViewModels
-{
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : INotifyPropertyChanged
     {
         private readonly ApiService _apiService;
         private string _nombreUsuario;
         private string _contraseña;
         private string _mensajeError;
+        private bool _isBusy;
 
-        public LoginViewModel(ApiService apiService)
-        {
-            _apiService = apiService;
-            Title = "Iniciar Sesión";
-
-            LoginCommand = new Command(async () => await OnLoginAsync(), () => !IsBusy);
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string NombreUsuario
         {
             get => _nombreUsuario;
-            set => SetProperty(ref _nombreUsuario, value);
+            set { _nombreUsuario = value; OnPropertyChanged(); }
         }
 
         public string Contraseña
         {
             get => _contraseña;
-            set => SetProperty(ref _contraseña, value);
+            set { _contraseña = value; OnPropertyChanged(); }
         }
 
         public string MensajeError
         {
             get => _mensajeError;
-            set => SetProperty(ref _mensajeError, value);
+            set { _mensajeError = value; OnPropertyChanged(); }
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set { _isBusy = value; OnPropertyChanged(); }
         }
 
         public ICommand LoginCommand { get; }
+
+        public LoginViewModel(ApiService apiService)
+        {
+            _apiService = apiService;
+            LoginCommand = new Command(async () => await OnLoginAsync());
+        }
 
         private async Task OnLoginAsync()
         {
             if (IsBusy)
                 return;
 
-            // Validación
             if (string.IsNullOrWhiteSpace(NombreUsuario) || string.IsNullOrWhiteSpace(Contraseña))
             {
                 MensajeError = "Por favor ingresa tu usuario y contraseña";
@@ -67,15 +71,15 @@ namespace ProyectoMovil2.ViewModels
 
                 if (result.Success)
                 {
-                    // Guarda el token de forma segura
                     await SecureStorage.SetAsync("auth_token", result.Token);
                     await SecureStorage.SetAsync("username", NombreUsuario);
 
+                    // ¡¡ESTA LÍNEA ES LA QUE FALTABA!!
+                    // Carga el token que acabamos de recibir en el ApiService.
                     await _apiService.RestoreTokenAsync();
+                    
 
                     Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
-
-                    // Navega a la página principal
                     await Shell.Current.GoToAsync("//MainPage");
                 }
                 else
@@ -92,27 +96,12 @@ namespace ProyectoMovil2.ViewModels
             finally
             {
                 IsBusy = false;
-                // Actualiza el estado del comando
-                ((Command)LoginCommand).ChangeCanExecute();
             }
-
-           
         }
 
 
-
-        // Método para verificar si ya hay sesión
-        public async Task<bool> CheckExistingSessionAsync()
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            try
-            {
-                var token = await SecureStorage.GetAsync("auth_token");
-                return !string.IsNullOrEmpty(token);
-            }
-            catch
-            {
-                return false;
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-}

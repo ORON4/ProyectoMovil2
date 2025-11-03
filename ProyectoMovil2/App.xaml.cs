@@ -15,7 +15,9 @@ namespace ProyectoMovil2
 
         protected override async void OnStart()
         {
-           
+            base.OnStart();
+            System.Diagnostics.Debug.WriteLine(">>> App.OnStart ejecutado");
+
         }
     }
 }

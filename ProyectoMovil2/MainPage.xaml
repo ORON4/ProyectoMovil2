@@ -18,52 +18,6 @@
                 TextColor="Gray" />
         </VerticalStackLayout>
 
-        <!-- Contenido Principal -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="15">
-
-                <!-- Tarjeta de ejemplo -->
-                <Frame 
-                    BorderColor="#DDDDDD"
-                    CornerRadius="10"
-                    HasShadow="True"
-                    Padding="15">
-                    <VerticalStackLayout Spacing="10">
-                        <Label 
-                            Text="Panel Principal"
-                            FontSize="18"
-                            FontAttributes="Bold" />
-                        <Label 
-                            Text="Aquí puedes mostrar información de tu API"
-                            TextColor="Gray" />
-                        <Button 
-                            Text="Cargar Datos"
-                            Command="{Binding LoadDataCommand}"
-                            BackgroundColor="#007ACC"
-                            TextColor="White" />
-                    </VerticalStackLayout>
-                </Frame>
-
-                <!-- Indicador de carga -->
-                <ActivityIndicator 
-                    IsRunning="{Binding IsBusy}"
-                    IsVisible="{Binding IsBusy}"
-                    Color="#007ACC"
-                    HeightRequest="50" />
-
-            </VerticalStackLayout>
-        </ScrollView>
-
-        <!-- Footer con botón de logout -->
-        <Button 
-            Grid.Row="2"
-            Text="Cerrar Sesión"
-            Command="{Binding LogoutCommand}"
-            BackgroundColor="#DC3545"
-            TextColor="White"
-            CornerRadius="10"
-            HeightRequest="50"
-            Margin="0,20,0,0" />
-
+    
     </Grid>
 </ContentPage>

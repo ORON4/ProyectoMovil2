@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ProyectoMovil2.ViewModels"
              x:Class="ProyectoMovil2.Views.LoginPage"
-            x:DataType="viewmodels:LoginViewModel"
-             Title="{Binding Title}"
+             x:DataType="viewmodels:LoginViewModel"
+             Title=""
              Shell.NavBarIsVisible="False">
     <ScrollView>
         <VerticalStackLayout 
@@ -67,12 +67,10 @@
                 CornerRadius="10"
                 HeightRequest="50"
                 Margin="0,10,0,0"
-                IsEnabled="{Binding IsNotBusy}" />
+                 />
 
             <!-- Indicador de Actividad -->
             <ActivityIndicator 
-                IsRunning="{Binding IsBusy}"
-                IsVisible="{Binding IsBusy}"
                 Color="#007ACC"
                 HeightRequest="30" />
 

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProyectoMovil2"
     xmlns:views="clr-namespace:ProyectoMovil2.Views"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Title="ProyectoMovil2">
 
     <Shell.FlyoutHeaderTemplate>
