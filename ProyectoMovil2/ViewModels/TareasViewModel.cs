@@ -61,6 +61,10 @@ namespace ProyectoMovil2.ViewModels
 
         private async Task CargarTareasAsync()
         {
+
+            System.Diagnostics.Debug.WriteLine($">>> Iniciando carga de tareas");
+            System.Diagnostics.Debug.WriteLine($">>> IsAuthenticated: {_apiService.IsAuthenticated()}");
+
             if (IsBusy)
                 return;
 
