@@ -275,4 +275,17 @@ public class ApiService
             throw;
         }
     }
+
+    public async Task<List<Alumno>> ObtenerAlumnosPorGrupoAsync(int idGrupo)
+    {
+        // Llama al nuevo endpoint de la API: /api/Alumnos/grupo/{idGrupo}
+        return await GetAsync<List<Alumno>>($"Alumnos/grupo/{idGrupo}");
+    }
+
+    public async Task GuardarAsistenciaAsync(AlumnosAsistencia asistencia)
+    {
+        // Llama al nuevo endpoint de la API: /api/AlumnosAsistencia
+        // Usa PostAsync que internamente llama al POST de la API (que hace el UPSERT)
+        await PostAsync<AlumnosAsistencia, object>("AlumnosAsistencia", asistencia);
+    }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProyectoMovil2.Models
 {
-    public class AlumnosAsistencia
+   public class Alumno
     {
         public int Id { get; set; }
-        public int IdAlumno { get; set; }
-        public DateTime Fecha { get; set; }
-        public bool Asistencia { get; set; }
+        public string NombreAlumno { get; set; }
+        public int Grupo { get; set; }
+
     }
 }

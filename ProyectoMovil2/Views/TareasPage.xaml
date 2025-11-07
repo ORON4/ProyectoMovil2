@@ -4,7 +4,7 @@
              x:Class="ProyectoMovil2.Views.TareasPage"
              x:DataType="viewmodels:TareasViewModel"
              xmlns:viewmodels="clr-namespace:ProyectoMovil2.ViewModels"
-             Title="TareasPage"
+             Title="Base de datos"
              xmlns:models="clr-namespace:ProyectoMovil2.Models">
     
 
