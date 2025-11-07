@@ -33,6 +33,7 @@ namespace ProyectoMovil2
             builder.Services.AddTransient<GrupoViewModel>();
             builder.Services.AddTransient<TareasViewModel>();
             builder.Services.AddTransient<CrearEditarTareaViewModel>();
+            builder.Services.AddTransient <AsistenciaPageViewModel>();
 
             // Registra Views (Transient)
             builder.Services.AddTransient<LoginPage>();
@@ -41,6 +42,7 @@ namespace ProyectoMovil2
             builder.Services.AddTransient<GrupoPage>();
             builder.Services.AddTransient<TareasPage>();
             builder.Services.AddTransient<CrearEditarTareaPage>();
+            builder.Services.AddTransient<AsistenciaPage>();
 
             return builder.Build();
         }

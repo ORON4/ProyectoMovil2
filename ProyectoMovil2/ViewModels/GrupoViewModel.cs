@@ -13,14 +13,24 @@ namespace ProyectoMovil2.ViewModels
         {
             Title = "Grupo";
             IrATareasCommand = new Command(async () => await IrATareas());
+
+            Title = "Asistencias";
+            IrAAsistenciasCommand = new Command(async () => await IrAAsistencias());
         }
 
         public ICommand IrATareasCommand { get; }
+        public ICommand IrAAsistenciasCommand { get; }
 
         private async Task IrATareas()
         {
             await Shell.Current.GoToAsync("TareasPage");
         }
+        
+        private async Task IrAAsistencias()
+        {
+            await Shell.Current.GoToAsync("AsistenciaPage");
+        }
+
 
     }
 }

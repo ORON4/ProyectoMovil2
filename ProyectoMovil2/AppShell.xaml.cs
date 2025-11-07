@@ -25,6 +25,7 @@ namespace ProyectoMovil2
             Routing.RegisterRoute("GrupoPage", typeof(GrupoPage));
             Routing.RegisterRoute("TareasPage", typeof(TareasPage));
             Routing.RegisterRoute("CrearEditarTareaPage", typeof(CrearEditarTareaPage));
+            Routing.RegisterRoute("AsistenciaPage", typeof(AsistenciaPage));
         }
 
         // Esta es la lógica que debe decidir a dónde ir al arrancar.

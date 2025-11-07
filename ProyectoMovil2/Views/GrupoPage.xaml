@@ -21,6 +21,17 @@
             BackgroundColor="#007ACC"
             TextColor="White"
             CornerRadius="10"
+            WidthRequest="200"
+            HeightRequest="50"
+            FontSize="18"
+            FontAttributes="Bold" />
+
+        <Button
+            Text="Asistencia"
+            Command="{Binding IrAAsistenciasCommand}"
+            BackgroundColor="#007ACC"
+            TextColor="White"
+            CornerRadius="10"
             HeightRequest="50"
             WidthRequest="200"
             FontSize="18"
