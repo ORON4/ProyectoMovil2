@@ -154,7 +154,7 @@ namespace ProyectoMovil2.ViewModels
                 if (_esEdicion)
                 {
                     // Actualizar tarea existente (PUT)
-                    await _apiService.PutAsync<Tarea, Tarea>($"tarea/{TareaId}", tarea);
+                    await _apiService.PutAsync($"tarea/{tarea.Id}", tarea);
                     await Application.Current.MainPage.DisplayAlert(
                         "Éxito",
                         "Tarea actualizada correctamente",

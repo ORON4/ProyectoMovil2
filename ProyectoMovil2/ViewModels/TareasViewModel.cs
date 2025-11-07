@@ -225,7 +225,7 @@ namespace ProyectoMovil2.ViewModels
                 tarea.Estatus = true;
 
                 // Enviar actualización a la API
-                await _apiService.PutAsync<Tarea, Tarea>($"tarea/{tarea.Id}", tarea);
+                await _apiService.PutAsync($"tarea/{tarea.Id}", tarea);
 
                 // Actualizar la UI
                 var tareaEnLista = Tareas.FirstOrDefault(t => t.Id == tarea.Id);

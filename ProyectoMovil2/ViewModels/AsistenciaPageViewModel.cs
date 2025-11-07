@@ -24,11 +24,12 @@ namespace ProyectoMovil2.ViewModels
 
         public ICommand CargarAlumnosCommand { get; }
 
-        // --- INICIO DE LA CORRECCIÓN ---
-        // 1. Declarar dos comandos separados
+       
+        
         public ICommand MarcarPresenteCommand { get; }
         public ICommand MarcarAusenteCommand { get; }
-        // --- FIN DE LA CORRECCIÓN ---
+        public ICommand IrAReporteCommand { get; }
+
 
         public AsistenciaPageViewModel(ApiService apiService)
         {
@@ -40,7 +41,7 @@ namespace ProyectoMovil2.ViewModels
 
             CargarAlumnosCommand = new Command(async () => await CargarAlumnosAsync());
 
-            // --- INICIO DE LA CORRECCIÓN ---
+          
             // 2. Inicializar ambos comandos. 
             //    El CommandParameter (Alumno) se pasa con <Alumno>
             MarcarPresenteCommand = new Command<Alumno>(async (alumno) =>
@@ -54,7 +55,9 @@ namespace ProyectoMovil2.ViewModels
                 if (alumno == null) return;
                 await MarcarAsistenciaAsync(alumno, false); // Marcar como Ausente (false)
             });
-            // --- FIN DE LA CORRECCIÓN ---
+           
+
+            IrAReporteCommand = new Command(async () => await Shell.Current.GoToAsync("ReporteAsistenciaPage"));
         }
 
         public async Task CargarAlumnosAsync()

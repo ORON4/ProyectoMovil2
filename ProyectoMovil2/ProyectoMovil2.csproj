@@ -78,6 +78,9 @@
 	  <MauiXaml Update="Views\LunesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ReporteAsistenciaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TareasPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

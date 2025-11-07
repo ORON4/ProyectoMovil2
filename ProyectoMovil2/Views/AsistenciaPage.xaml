@@ -10,6 +10,20 @@
 
     <StackLayout Padding="10" Spacing="10">
 
+       
+        <Label Text="Seleccionar Fecha:" FontAttributes="Bold" FontSize="16"/>
+        <DatePicker Date="{Binding FechaSeleccionada}" />
+
+       
+        <Button Text="Ver Reporte de Asistencias"
+            Command="{Binding IrAReporteCommand}"
+            BackgroundColor="{StaticResource Primary}"
+            TextColor="White"
+            Margin="0,10"/>
+
+        <BoxView HeightRequest="1" Color="LightGray" />
+
+
         <Label Text="Seleccionar Fecha:" FontAttributes="Bold" FontSize="16"/>
         <DatePicker Date="{Binding FechaSeleccionada}" />
 

@@ -136,27 +136,19 @@ public class ApiService
         }
     }
 
-    public async Task<TResponse> PutAsync<TRequest, TResponse>(string endpoint, TRequest data)
+    public async Task PutAsync<TRequest>(string endpoint, TRequest data)
     {
         try
         {
-            System.Diagnostics.Debug.WriteLine($">>> PutAsync: Llamando a {endpoint}");
-            System.Diagnostics.Debug.WriteLine($">>> PutAsync: Auth header: {_httpClient.DefaultRequestHeaders.Authorization?.ToString() ?? "NULL"}");
-
             var response = await _httpClient.PutAsJsonAsync(endpoint, data);
-
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-            {
-                System.Diagnostics.Debug.WriteLine(">>> PutAsync: 401 Unauthorized recibido");
                 throw new UnauthorizedAccessException("Token inválido o expirado.");
-            }
 
+            // Solo nos aseguramos de que fue exitoso, no leemos el cuerpo
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<TResponse>();
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($">>> PutAsync: Error - {ex}");
             throw new Exception($"Error en PUT: {ex.Message}", ex);
         }
     }
@@ -287,5 +279,14 @@ public class ApiService
         // Llama al nuevo endpoint de la API: /api/AlumnosAsistencia
         // Usa PostAsync que internamente llama al POST de la API (que hace el UPSERT)
         await PostAsync<AlumnosAsistencia, object>("AlumnosAsistencia", asistencia);
+    }
+
+    public async Task<List<AsistenciaReporte>> ObtenerAsistenciaPorFechaAsync(DateTime fecha)
+    {
+        // Formatea la fecha como YYYY-MM-DD para que sea segura en la URL
+        string fechaUrl = fecha.ToString("yyyy-MM-dd");
+
+        // Llama al nuevo endpoint de la API: AlumnosAsistencia/fecha/2025-11-07
+        return await GetAsync<List<AsistenciaReporte>>($"AlumnosAsistencia/fecha/{fechaUrl}");
     }
 }
