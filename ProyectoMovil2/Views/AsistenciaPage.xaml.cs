@@ -5,9 +5,18 @@ namespace ProyectoMovil2.Views;
 
 public partial class AsistenciaPage : ContentPage
 {
-	public AsistenciaPage(AsistenciaPageViewModel viewModel)
+    private readonly AsistenciaPageViewModel _viewModel;
+    public AsistenciaPage(AsistenciaPageViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
-	}
+        _viewModel = viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        // Carga los datos cada vez que la página aparece
+        await _viewModel.InitializeAsync();
+    }
 }

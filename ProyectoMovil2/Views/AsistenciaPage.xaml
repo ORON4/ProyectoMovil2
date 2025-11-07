@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ProyectoMovil2.Models"
+             xmlns:viewmodel="clr-namespace:ProyectoMovil2.ViewModels"
              x:Class="ProyectoMovil2.Views.AsistenciaPage"
+             x:DataType="viewmodel:AsistenciaPageViewModel"
              Title="AsistenciaPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Asistencia"
-            FontSize="32"
-            FontAttributes="Bold"
-            HorizontalOptions="Center"
-            TextColor="#007ACC"/>       
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto, *">
+
+        <ActivityIndicator Grid.RowSpan="2"
+                           IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="{StaticResource Primary}" />
+
+        <Label Grid.Row="1"
+               Text="{Binding MensajeError}"
+               IsVisible="{Binding IsNotBusy}"
+               TextColor="Gray"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+
+        <RefreshView Grid.Row="1"
+                     Command="{Binding CargarAsistenciasCommand}"
+                     IsRefreshing="{Binding IsBusy}">
+
+            <CollectionView ItemsSource="{Binding Asistencias}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:AlumnosAsistencia">
+                        <Frame Margin="10" Padding="15" CornerRadius="10" BorderColor="{StaticResource Primary}" HasShadow="True">
+                            <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto">
+
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding NombreAlumno}"
+                                       FontAttributes="Bold"
+                                       FontSize="18" />
+
+                                <Label Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding Grupo}"
+                                       FontSize="14"
+                                       TextColor="Gray"/>
+
+                                <Label Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding Fecha, StringFormat='{0:dd/MM/yyyy}'}"
+                                       FontSize="12"
+                                       TextColor="LightGray"/>
+
+                                <Label Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
+                                       VerticalOptions="Center"
+                                       FontAttributes="Bold">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Asistencia}"
+                                                     Value="True">
+                                            <Setter Property="Text" Value="Presente" />
+                                            <Setter Property="TextColor" Value="Green" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding Asistencia}"
+                                                     Value="False">
+                                            <Setter Property="Text" Value="Ausente" />
+                                            <Setter Property="TextColor" Value="Red" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 </ContentPage>

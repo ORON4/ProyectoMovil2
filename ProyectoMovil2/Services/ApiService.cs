@@ -262,4 +262,17 @@ public class ApiService
             _token = null;
         }
     }
+
+    public async Task<List<AlumnosAsistencia>> ObtenerAsistenciasAsync()
+    {
+        try
+        {
+            return await GetAsync<List<AlumnosAsistencia>>("AlumnosAsistencia");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error en ObtenerAsistenciasAsync: {ex.Message}");
+            throw;
+        }
+    }
 }
