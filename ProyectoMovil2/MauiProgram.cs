@@ -2,6 +2,7 @@
 using ProyectoMovil2.Services;
 using ProyectoMovil2.ViewModels;
 using ProyectoMovil2.Views;
+using ZXing.Net.Maui.Controls;
 
 namespace ProyectoMovil2
 {
@@ -12,6 +13,7 @@ namespace ProyectoMovil2
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -35,6 +37,7 @@ namespace ProyectoMovil2
             builder.Services.AddTransient<CrearEditarTareaViewModel>();
             builder.Services.AddTransient <AsistenciaPageViewModel>();
             builder.Services.AddTransient<ReporteAsistenciaPageViewModel>();
+            builder.Services.AddTransient<EscanerQRpageViewModel>();
 
             // Registra Views (Transient)
             builder.Services.AddTransient<LoginPage>();
@@ -45,6 +48,7 @@ namespace ProyectoMovil2
             builder.Services.AddTransient<CrearEditarTareaPage>();
             builder.Services.AddTransient<AsistenciaPage>();
             builder.Services.AddTransient<ReporteAsistenciaPage>();
+            builder.Services.AddTransient<EscanerQRpage>();
 
             return builder.Build();
         }

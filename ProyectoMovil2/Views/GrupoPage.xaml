@@ -37,5 +37,16 @@
             FontSize="18"
             FontAttributes="Bold" />
 
+        <Button
+            Text="Escanear QR"
+            Command="{Binding IrAEscanerCommand}"
+            BackgroundColor="#FF8C00"
+            TextColor="White"
+            CornerRadius="10"
+            HeightRequest="50"
+            WidthRequest="200"
+            FontSize="18"
+            FontAttributes="Bold" />
+
     </VerticalStackLayout>
 </ContentPage>

@@ -17,7 +17,7 @@ public class ApiService
     private readonly HttpClient _httpClient;
     private string _token;
 
-    private const string BaseUrl = "http://localhost:5117";
+    private const string BaseUrl = "http://10.81.22.243:5117";
 
     public ApiService()
     {
@@ -288,5 +288,11 @@ public class ApiService
 
         // Llama al nuevo endpoint de la API: AlumnosAsistencia/fecha/2025-11-07
         return await GetAsync<List<AsistenciaReporte>>($"AlumnosAsistencia/fecha/{fechaUrl}");
+    }
+
+    public async Task<Alumno> ObtenerAlumnoPorIdAsync(int idAlumno)
+    {
+        // Llama al nuevo endpoint de la API: Alumno/{id}
+        return await GetAsync<Alumno>($"Alumno/{idAlumno}");
     }
 }

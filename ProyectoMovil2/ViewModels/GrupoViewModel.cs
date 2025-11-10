@@ -15,11 +15,15 @@ namespace ProyectoMovil2.ViewModels
             IrATareasCommand = new Command(async () => await IrATareas());
             // --- AÑADE EL COMANDO PARA ASISTENCIAS ---
             IrAAsistenciasCommand = new Command(async () => await IrAAsistencias());
+
+            IrAEscanerCommand = new Command(async () => await IrAEscaner());
         }
 
         public ICommand IrATareasCommand { get; }
         // --- AÑADE ESTA PROPIEDAD ---
         public ICommand IrAAsistenciasCommand { get; }
+
+        public ICommand IrAEscanerCommand { get; }
 
         private async Task IrATareas()
         {
@@ -32,6 +36,21 @@ namespace ProyectoMovil2.ViewModels
         {
             // --- CORRECCIÓN: Usa ruta absoluta (con //) ---
             await Shell.Current.GoToAsync("AsistenciaPage");
+        }
+
+        private async Task IrAEscaner()
+        {
+            // Pide permiso para la cámara antes de navegar
+            var status = await Permissions.RequestAsync<Permissions.Camera>();
+            if (status == PermissionStatus.Granted)
+            {
+                await Shell.Current.GoToAsync("EscanerQRpage");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Permiso Requerido",
+                    "Se necesita permiso de la cámara para escanear.", "OK");
+            }
         }
     }
 }
