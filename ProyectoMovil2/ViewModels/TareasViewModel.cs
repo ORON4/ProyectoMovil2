@@ -29,6 +29,8 @@ namespace ProyectoMovil2.ViewModels
 
             // Este comando navega al detalle del alumno seleccionado
             IrAAlumnoCommand = new Command<Alumno>(async (a) => await IrAAlumnoAsync(a));
+
+            IrAGestionCommand = new Command(async () => await Shell.Current.GoToAsync(nameof(GestionTareasPage)));
         }
 
         public ObservableCollection<Alumno> Alumnos { get; }
@@ -49,6 +51,7 @@ namespace ProyectoMovil2.ViewModels
         public ICommand RefreshCommand { get; }
         public ICommand CrearTareaCommand { get; }
         public ICommand IrAAlumnoCommand { get; }
+        public ICommand IrAGestionCommand { get; }
 
         public async Task InitializeAsync()
         {
@@ -89,7 +92,6 @@ namespace ProyectoMovil2.ViewModels
                 IsBusy = false;
             }
         }
-
         private async Task RefreshAsync()
         {
             IsRefreshing = true;

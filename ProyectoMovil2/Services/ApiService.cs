@@ -293,6 +293,12 @@ public class ApiService
     public async Task<Alumno> ObtenerAlumnoPorIdAsync(int idAlumno)
     {
         // Llama al nuevo endpoint de la API: Alumno/{id}
-        return await GetAsync<Alumno>($"Alumno/{idAlumno}");
+        return await GetAsync<Alumno>($"Alumnos/{idAlumno}");
+    }
+
+    public async Task<List<Tarea>> ObtenerTareasGlobalesAsync()
+    {
+        // Llama al nuevo endpoint
+        return await GetAsync<List<Tarea>>("tarea/globales");
     }
 }

@@ -10,18 +10,18 @@
 
         <!-- 1. La vista de la Cámara -->
         <zxing:CameraBarcodeReaderView Grid.Row="0"
-                                     x:Name="cameraBarcodeReaderView"
-                                     BarcodesDetected="cameraBarcodeReaderView_BarcodesDetected" 
-                                       IsDetecting="{Binding CanScan}"/>
+            x:Name="cameraBarcodeReaderView"
+            BarcodesDetected="cameraBarcodeReaderView_BarcodesDetected" 
+            IsDetecting="{Binding CanScan}"/>
 
         <!-- 2. Overlay simple -->
         <Border Grid.Row="0"
-                Stroke="Red"
-                StrokeThickness="4"
-                WidthRequest="250"
-                HeightRequest="250"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+            Stroke="Red"
+            StrokeThickness="4"
+            WidthRequest="250"
+            HeightRequest="250"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
 
         <!-- 3. Área de Resultados -->
         <StackLayout Grid.Row="1" Padding="20" Spacing="10" BackgroundColor="#333">

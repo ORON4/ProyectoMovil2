@@ -80,6 +80,9 @@
 	  <MauiXaml Update="Views\EscanerQRpage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\GestionTareasPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\GrupoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -13,8 +13,8 @@
             <Label Text="Asignar Tareas" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
             <Label Text="Selecciona un alumno para ver sus tareas" FontSize="14" TextColor="#E0E0E0" HorizontalOptions="Center"/>
 
-            <Button Text="+ Nueva Tarea Global"
-                    Command="{Binding CrearTareaCommand}"
+            <Button Text="Gestionar tareas"
+                    Command="{Binding IrAGestionCommand}"
                     BackgroundColor="#28a745"
                     TextColor="White"
                     CornerRadius="10"
