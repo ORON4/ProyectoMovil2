@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoMovil2.Views.AlumnoTareasPage"
+             xmlns:viewmodels="clr-namespace:ProyectoMovil2.ViewModels"
+             xmlns:models="clr-namespace:ProyectoMovil2.Models"
+             x:DataType="viewmodels:AlumnoTareasViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+        <CollectionView ItemsSource="{Binding Tareas}" EmptyView="Este alumno no tiene tareas asignadas.">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Tarea">
+                    <Frame Padding="15" Margin="10,5" CornerRadius="10" BackgroundColor="White" BorderColor="#EEE">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Titulo}" FontSize="18" FontAttributes="Bold" TextColor="#333"/>
+
+                            <Border Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding EstatusColor}" StrokeShape="RoundRectangle 10" Padding="8,2">
+                                <Label Text="{Binding EstatusTexto}" TextColor="White" FontSize="12" FontAttributes="Bold"/>
+                            </Border>
+
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Descripcion}" TextColor="#666" Margin="0,5"/>
+
+                            <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding FechaEntregaTexto, StringFormat='Entrega: {0}'}" TextColor="#007ACC" FontSize="12"/>
+
+                            <HorizontalStackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="10" Margin="0,10,0,0"
+                                                   IsVisible="{Binding Estatus, Converter={StaticResource InverseBoolConverter}}">
+                                <Button Text="✅ Entregar" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:AlumnoTareasViewModel}}, Path=MarcarEntregadaCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="40" FontSize="12" BackgroundColor="#28a745"/>
+
+                                <Button Text="🗑️ Quitar" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:AlumnoTareasViewModel}}, Path=EliminarTareaCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="40" FontSize="12" BackgroundColor="#dc3545"/>
+                            </HorizontalStackLayout>
+
+                            <Label Grid.Row="3" Grid.ColumnSpan="2" Text="Tarea finalizada" TextColor="Green" 
+                                   IsVisible="{Binding Estatus}" Margin="0,10,0,0" FontAttributes="Italic"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

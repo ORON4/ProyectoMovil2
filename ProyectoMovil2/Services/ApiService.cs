@@ -17,7 +17,7 @@ public class ApiService
     private readonly HttpClient _httpClient;
     private string _token;
 
-    private const string BaseUrl = "http://10.81.22.243:5117";
+    private const string BaseUrl = "http://192.168.1.73:5117";
 
     public ApiService()
     {
